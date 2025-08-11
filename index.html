@@ -27,76 +27,131 @@
     <meta name="twitter:description" content="Rakshith Nettar's TIL's">
     <!-- Helps prevent duplicate content issues -->
     <link rel="canonical" href="https://til.rakshithnettar.com/">
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>">
-		<style>
-			html {
-				font-size: 100%;
-				background-color: rgb(35, 47, 62);
-				color: rgb(237, 242, 255);
-				height: 100%;
-			}
-			body {
-				box-sizing: border-box;
-				margin: 0;
-				line-height: 1.5;
-				scroll-behavior: smooth;
-				font-family: monospace;
-				font-size: clamp(1rem, 2.5vw, 1.25rem);
-			}
-			h1 {
-				font-size: clamp(2rem, 5vw, 3.5rem);
-				font-weight: 700;
-				line-height: 1.2;
-				margin: 1rem 0;
-				color: rgb(145, 167, 255);
-			}
-			h3 {
-				font-size: clamp(1.25rem, 3vw, 2rem);
-				font-weight: 600;
-				line-height: 1.3;
-				margin: 0.75rem 0;
-				color: rgb(247, 202, 158);
-			}
-			h4 {
-				font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-				font-weight: 500;
-				line-height: 1.4;
-				margin: 0.5rem 0;
-				color: rgb(150, 242, 215);
-			}
-			a {
-				color: rgb(216, 245, 162);
-			}
-			.parent {
-				display: grid;
-				grid-template-columns: 1fr min(80ch, calc(100% - 16px)) 1fr;
-				grid-column-gap: 8px;
-				place-items: center;
-				height: 100vh;
-			}
-			}
-			.parent > * {
-				grid-column: 2;
-			}
-			div:not(.parent) {
-				margin-bottom: 20px;
-				margin-top: 20px;
-			}
-			ul {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				display: flex;
-				gap: 8px;
-				flex-wrap: wrap;
-			}
-		</style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>">
+    <!-- Set theme ASAP to avoid flash -->
+    <script>
+      (() => {
+        const key = 'theme';
+        const saved = localStorage.getItem(key);
+        const systemDark = matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme; // native form controls
+      })();
+    </script>
+    <style>
+:root {
+  --bg: #E3FAFC;
+  --fg: #252521;
+  --text-color-1: #3D4D04;
+  --text-color-3: #663500;
+  --text-color-4: #054D37;
+  --link-text-color: #1864AB;
+  color-scheme: light dark; /* allow either by default */
+}
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --bg: rgb(35, 47, 62);
+            --fg: rgb(237, 242, 255);
+            --text-color-1: rgb(145, 167, 255);
+            --text-color-3: rgb(247, 202, 158);
+            --text-color-4: rgb(150, 242, 215);
+            --link-text-color: rgb(216, 245, 162);
+          }
+
+          /* User override wins over media query */
+          :root[data-theme="light"] {
+            --bg: #E3FAFC;
+            --fg: #252521;
+            --text-color-1: #3D4D04;
+            --text-color-3: #663500;
+            --text-color-4: #054D37;
+            --link-text-color: #1864AB;
+            color-scheme: light;
+          }
+          :root[data-theme="dark"]  {
+            --bg: rgb(35, 47, 62);
+            --fg: rgb(237, 242, 255);
+            --text-color-1: rgb(145, 167, 255);
+            --text-color-3: rgb(247, 202, 158);
+            --text-color-4: rgb(150, 242, 215);
+            --link-text-color: rgb(216, 245, 162);
+            color-scheme: dark;
+          }
+          html {
+            font-size: 100%;
+            background-color: var(--bg);
+            color: var(--fg);
+            height: 100%;
+          }
+          body {
+            box-sizing: border-box;
+            margin: 0;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            font-family: monospace;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+          }
+          h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 1rem 0;
+            color: var(--text-color-1);
+          }
+          h3 {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin: 0.75rem 0;
+            color: var(--text-color-3);
+          }
+          h4 {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.4;
+            margin: 0.5rem 0;
+            color: var(--text-color-4);
+          }
+          a {
+            color: var(--link-text-color);
+          }
+          .parent {
+            display: grid;
+            grid-template-columns: 1fr min(80ch, calc(100% - 16px)) 1fr;
+            grid-column-gap: 8px;
+            place-items: center;
+            height: 100vh;
+          }
+        }
+        .parent > * {
+          grid-column: 2;
+        }
+        div:not(.parent) {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+          margin-top: 20px;
+        }
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+    </style>
   </head>
   <body>
     <div class="parent">
       <aside></aside>
       <main>
-        <h1>RAKSHITH NETTAR</h1>
+        <div>
+          <h1>RAKSHITH NETTAR</h1>
+          <button id="theme-toggle" class="toggle" aria-label="Toggle dark mode" aria-pressed="false">🌙 Dark</button>
+        </div>
         <ul>
           <li><a rel="noopener noreferrer" target="_blank" href="https://twitter.com/rakshithbellare">Twitter</a></li>
           <li><a rel="noopener noreferrer" target="_blank" href="https://linkedin.com/in/rakshithbellare/">Linkedin</a></li>
@@ -104,8 +159,8 @@
           <li><a rel="noopener noreferrer" target="_blank" href="https://codepen.io/RakshithNM">Codepen</a></li>
           <li><a rel="noopener noreferrer" target="_blank" href="https://blog.rakshithnettar.com/">Blog</a></li>
         </ul>
-				<h3>TIL's</h3>
-				<ol>
+        <h3>TIL's</h3>
+        <ol>
           <li>
             <h4>.(dot command)</h4>
             <p>In vim, the dot command repeats last change. If you have searched for a word and want to change all occurences of it, in normal mode type cgn[word], now pressing the dot will change the next occurences on each press.</p>
@@ -126,12 +181,35 @@
             <h4><a rel="noopener noreferrer" target="_blank" href="https://eradman.com/entrproject/">entr</a></h4>
             <p>Run arbitrary commands when files change</p>
           </li>
-				</ol>
+        </ol>
         <footer>
           <p style="text-align: center">© 2025 Rakshith Bellare</p>
         </footer>
       </main>
       <aside></aside>
     </div>
+    <script>
+      (function () {
+        const key = 'theme';
+        const btn = document.getElementById('theme-toggle');
+
+        function setTheme(theme) {
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          localStorage.setItem(key, theme);
+          const isDark = theme === 'dark';
+          btn.setAttribute('aria-pressed', String(isDark));
+          btn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+        }
+
+        // Initialize button label/state
+        setTheme(document.documentElement.dataset.theme);
+
+        btn.addEventListener('click', () => {
+          const current = document.documentElement.dataset.theme;
+          setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+      })();
+    </script>
   </body>
 </html>
