@@ -142,6 +142,9 @@
           gap: 8px;
           flex-wrap: wrap;
         }
+        button {
+          font-size: 24px;
+        }
     </style>
   </head>
   <body>
@@ -150,7 +153,7 @@
       <main>
         <div>
           <h1>RAKSHITH NETTAR</h1>
-          <button id="theme-toggle" class="toggle" aria-label="Toggle dark mode" aria-pressed="false">🌙 Dark</button>
+          <button id="theme-toggle" class="toggle" aria-label="Toggle dark mode" aria-pressed="false">🌙</button>
         </div>
         <ul>
           <li><a rel="noopener noreferrer" target="_blank" href="https://twitter.com/rakshithbellare">Twitter</a></li>
@@ -199,7 +202,7 @@
           localStorage.setItem(key, theme);
           const isDark = theme === 'dark';
           btn.setAttribute('aria-pressed', String(isDark));
-          btn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+          btn.textContent = isDark ? '☀️' : '🌙';
         }
 
         // Initialize button label/state
