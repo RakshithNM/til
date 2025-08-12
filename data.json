@@ -1,0 +1,33 @@
+[
+  {
+    "title": "git config --global merge.conflictStyle zdiff3",
+    "date": "12 August 2025",
+    "explanation": "Better merge conflict handling in git version >= 2.35"
+  },
+  {
+    "title": ".(dot command)",
+    "date": "10 August 2025",
+    "explanation": "In vim, the dot command repeats last change. If you have searched for a word and want to change all occurences of it, in normal mode type cgn[word], now pressing the dot will change the next occurences on each press."
+  },
+  {
+    "title": "; and ,",
+    "date": "08 August 2025",
+    "explanation": "In vim, if you want to repeat the search for a character done using t, f, T or F, pressing ; does it the motion's direction and , in the opposite direction."
+  },
+  {
+    "title": "gcc --save-temps source.c",
+    "date": "07 August 2025",
+    "explanation": "Command to see intermediate files of a C source file compilation"
+  },
+  {
+    "title": "fc",
+    "date": "06 August 2025",
+    "explanation": "Unix utility command to execute to edit the last executed command in the default editor, very helpful while getting SQL queries right."
+  },
+  {
+    "title": "entr",
+    "link": "https://eradman.com/entrproject/",
+    "date": "05 August 2025",
+    "explanation": "Run arbitrary commands when files change"
+  }
+]

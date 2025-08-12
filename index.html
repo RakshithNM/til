@@ -162,28 +162,7 @@
         </ul>
         </ul>
         <h3>TIL's</h3>
-        <ol>
-          <li>
-            <h4>.(dot command)</h4>
-            <p>In vim, the dot command repeats last change. If you have searched for a word and want to change all occurences of it, in normal mode type cgn[word], now pressing the dot will change the next occurences on each press.</p>
-          </li>
-          <li>
-            <h4>; and ,</h4>
-            <p>In vim, if you want to repeat the search for a character done using t, f, T or F, pressing ; does it the motion's direction and , in the opposite direction.</p>
-          </li>
-          <li>
-            <h4>gcc --save-temps source.c</h4>
-            <p>Command to see intermediate files of a C source file compilation</p>
-          </li>
-          <li>
-            <h4>fc</h4>
-            <p>Unix utility command to execute to edit the last executed command in the default editor, very helpful while getting SQL queries right.</p>
-          </li>
-          <li>
-            <h4><a rel="noopener noreferrer" target="_blank" href="https://eradman.com/entrproject/">entr</a></h4>
-            <p>Run arbitrary commands when files change</p>
-          </li>
-        </ol>
+        <ol id="data"></ol>
         <footer>
           <p style="text-align: center">© 2025 Rakshith Bellare</p>
         </footer>
@@ -212,6 +191,37 @@
           setTheme(current === 'dark' ? 'light' : 'dark');
         });
       })();
+    </script>
+
+    <script>
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          const dataElement = document.getElementById('data');
+          if(dataElement) {
+            for(const til of data) {
+              const listItem = document.createElement('li');
+              if(til.link && til.link.length > 0) {
+                const link = document.createElement('a');
+                link.href = til.link;
+                link.textContent = til.title;
+                link.target = '_blank'
+                listItem.appendChild(link);
+              }
+              else {
+                const h4 = document.createElement('h4');
+                h4.textContent = til.title;
+                listItem.appendChild(h4);
+              }
+              const p = document.createElement('p');
+              p.textContent = til.explanation;
+              listItem.appendChild(p);
+
+              dataElement.appendChild(listItem);
+            }
+          }
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
     </script>
   </body>
 </html>
