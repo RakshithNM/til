@@ -46,6 +46,7 @@
         --text-color-1: #3D4D04;
         --text-color-3: #663500;
         --text-color-4: #054D37;
+        --text-color-5: #232F00;
         --link-text-color: #1864AB;
         color-scheme: light dark; /* allow either by default */
       }
@@ -56,6 +57,7 @@
           --text-color-1: rgb(145, 167, 255);
           --text-color-3: rgb(247, 202, 158);
           --text-color-4: rgb(150, 242, 215);
+          --text-color-5: #00B4F4;
           --link-text-color: rgb(216, 245, 162);
         }
       }
@@ -66,6 +68,7 @@
         --text-color-1: #3D4D04;
         --text-color-3: #663500;
         --text-color-4: #054D37;
+        --text-color-5: #232F00;
         --link-text-color: #1864AB;
         color-scheme: light;
       }
@@ -75,6 +78,7 @@
         --text-color-1: rgb(145, 167, 255);
         --text-color-3: rgb(247, 202, 158);
         --text-color-4: rgb(150, 242, 215);
+        --text-color-5: #00B4F4;
         --link-text-color: rgb(216, 245, 162);
         color-scheme: dark;
       }
@@ -112,6 +116,13 @@
         line-height: 1.4;
         margin: 0.5rem 0;
         color: var(--text-color-4);
+      }
+      time {
+        font-size: clamp(0.75rem, 2vw, 1rem);
+        font-weight: 400;
+        line-height: 1.4;
+        margin: 0.5rem 0;
+        color: var(--text-color-5);
       }
       a {
         color: var(--link-text-color);
@@ -192,29 +203,43 @@
         });
       })();
     </script>
-
     <script>
       fetch('data.json')
         .then(response => response.json())
         .then(data => {
           const dataElement = document.getElementById('data');
-          if(dataElement) {
-            for(const til of data) {
+          if (dataElement) {
+            for (const til of data) {
               const listItem = document.createElement('li');
-              if(til.link && til.link.length > 0) {
-                const link = document.createElement('a');
-                link.href = til.link;
-                link.textContent = til.title;
-                link.target = '_blank'
-                listItem.appendChild(link);
+
+              let titleElement;
+              if (til.link && til.link.length > 0) {
+                titleElement = document.createElement('a');
+                titleElement.href = til.link;
+                titleElement.textContent = til.title;
+                titleElement.target = '_blank';
+              } else {
+                titleElement = document.createElement('h4');
+                titleElement.textContent = til.title;
               }
-              else {
-                const h4 = document.createElement('h4');
-                h4.textContent = til.title;
-                listItem.appendChild(h4);
-              }
+
+              const date = document.createElement('time');
+              date.dateTime = til.date;
+              date.textContent = til.date;
+
+              const inner = document.createElement('div');
+              inner.style.display = 'flex';
+              inner.style.alignItems = 'center';
+              inner.style.gap = '10px';
+              inner.appendChild(titleElement);
+              inner.appendChild(date);
+
+              listItem.appendChild(inner);
+
               const p = document.createElement('p');
               p.textContent = til.explanation;
+              p.style.marginLeft = '20px'; // indent explanation a bit
+              p.style.marginTop = '4px';
               listItem.appendChild(p);
 
               dataElement.appendChild(listItem);
