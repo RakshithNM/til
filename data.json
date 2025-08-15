@@ -1,5 +1,10 @@
 [
   {
+    "title": "Show recently opened file at top in netrw",
+    "date": "15 August 2025",
+    "explanation": "Set these flags to sort files my most recently modified, vim.g.netrw_sort_by = 'time' and vim.g.netrw_sort_direction = 'reverse'"
+  },
+  {
     "title": "git config --global merge.conflictStyle zdiff3",
     "date": "12 August 2025",
     "explanation": "Better merge conflict handling in git version >= 2.35"
