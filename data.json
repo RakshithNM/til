@@ -1,6 +1,6 @@
 [
   {
-    "title": "Show recently opened file at top in netrw",
+    "title": "Show recently opened file at the top in netrw",
     "date": "15 August 2025",
     "explanation": "Set these flags to sort files my most recently modified, vim.g.netrw_sort_by = 'time' and vim.g.netrw_sort_direction = 'reverse'"
   },
