@@ -1,5 +1,11 @@
 [
   {
+    "title": "Extract removed lines in a commit",
+    "link": "https://blog.rakshithnettar.com/figure-out-changed-lines-in-a-commit-in-a-git-repo/",
+    "date": "20 August 2025",
+    "explanation": "Use `git show` to extract removed lines in a commit"
+  },
+  {
     "title": "Show recently opened file at the top in netrw",
     "date": "15 August 2025",
     "explanation": "Set these flags to sort files my most recently modified, vim.g.netrw_sort_by = 'time' and vim.g.netrw_sort_direction = 'reverse'"
